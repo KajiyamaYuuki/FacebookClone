@@ -1,13 +1,13 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   def index
-    @post = Post.all
+    @posts = Post.all
   end
   def new
     @post = Post.new
   end
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
     if params[:back]
       render :new
     else
@@ -34,12 +34,12 @@ class PostsController < ApplicationController
     redirect_to posts_path, notice:"投稿を削除しました"
   end
   def confirm
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
     render :new if @post.invalid?
   end
   private
-  def post_prams
-    params.require(:post).permit(:content)
+  def post_params
+    params.require(:post).permit(:content, :image, :image_cache)
   end
   def set_post
     @post = Post.find(params[:id])

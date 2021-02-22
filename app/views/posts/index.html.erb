@@ -10,7 +10,7 @@
   <tbody>
     <% @posts.each do |post| %>
       <tr class="tweet">
-        <td class="user"><%= user.name %></td>
+        <td class="user"><%= post.user.name %></td>
         <td class="post"><%= post.content %></td>
         <td class="command"><%= link_to 'Show', post_path(post) %></td>
         <td class="command"><%= link_to 'Edit', edit_post_path(post), data: { confirm: 'Are you sure edit?'} %></td>
@@ -19,5 +19,3 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to "新規投稿", new_post %>
