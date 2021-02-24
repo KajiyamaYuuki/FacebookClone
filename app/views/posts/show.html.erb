@@ -4,5 +4,10 @@
   <strong>Image:</strong>
   <%= image_tag @post.image.url %>
 </p>
-<%= link_to 'Edit', edit_post_path(@post) %> |
+
+<% if @post.user_id == current_user.id %>
+  <%= link_to 'Edit', edit_post_path(@post), data: { confirm: 'Are you sure edit?'} %>
+  <%= link_to 'Destroy', post_path(@post), method: :delete, data: { confirm: 'Are you sure delete?' } %>
+<% end %>
+
 <%= link_to 'Back', posts_path %>

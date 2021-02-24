@@ -1,2 +1,5 @@
 <h1><%= @user.name %>のページ</h1>
-<%= link_to "新規投稿",  new_post_path %>
+<% @posts.each do |post| %>
+  <hr>
+  <p><span>投稿内容: </span><%=link_to post.content, post_path(post.id) %></p>
+<% end %>
