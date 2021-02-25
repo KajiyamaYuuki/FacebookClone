@@ -10,24 +10,47 @@
   </head>
 
   <body>
+    <header class="navbar navbar-dark bg-primary">
+      <div class="container">
+        <div class="nabar-header">
+          <h1>Footnote</h1>
+          <button type="button" class="btn">
+          <%= link_to "Time line", posts_path %>
+          </button>
+          <nav class="navbar-right">
+          <% flash.each do |key,value| %>
+            <%= content_tag(:div, value, class:"#{key}") %>
+          <% end %>
+            <% if logged_in? %>
+              <p><%= current_user.name %>さんがログイン中</p>
+              <button type="button" class="btn">
+              <%= link_to "New post", new_post_path %>
+              </button>
+              <button type="button" class="btn">
+              <%= link_to "My page", user_path(current_user.id) %>
+              </button>
+              <button type="button" class="btn">
+              <%= link_to "Log out", session_path(current_user.id), method: :delete %>
+              </button>
+            <% else %>
+              <button type="button" class="btn">
+              <%= link_to "Sign Up", new_user_path %>
+              </button>
+              <button type="button" class="btn">
+              <%= link_to "Log in", new_session_path %>
+              </button>
+            <% end %>
+          </nav>
+        </div>
+      </div>
+    </header>
     <div class="container">
-      <header>
-        <h1>Footnote</h1>
-        <% flash.each do |key,value| %>
-          <%= content_tag(:div, value, class:"#{key}") %>
-        <% end %>
-        <% if logged_in? %>
-          <%= link_to "new post", new_post_path %>
-          <%= link_to "My page", user_path(current_user.id) %>
-          <%= link_to "Log out", session_path(current_user.id), method: :delete %>
-        <% else %>
-          <%= link_to "Sign Up", new_user_path %>
-          <%= link_to "Log in", new_session_path %>
-        <% end %>
-      </header>
-      <%= yield %>
-      <footer>
-      </footer>
+    <%= yield %>
     </div>
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">Copyright © 2021 WEF2101 Kajiyama Yuuki.</p>
+      </div>
+    </footer>
   </body>
 </html>

@@ -1,5 +1,5 @@
-<h1><%= @user.name %>のページ</h1>
+<h1><%= @user.name %>さんのページ</h1>
 <% @posts.each do |post| %>
   <hr>
-  <p><span>投稿内容: </span><%=link_to post.content, post_path(post.id) %></p>
+  <p><span>投稿内容: </span><%=link_to post.content, post_path(post.id) %><%= "(画像有り)" if post.image.present? %></p>
 <% end %>

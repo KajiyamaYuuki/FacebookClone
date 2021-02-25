@@ -1,11 +1,12 @@
 <h1>投稿詳細画面</h1>
+<p>投稿者: <%= @post.user.name %></p>
 <p>内容: <%= @post.content %></p>
 <p>
   <strong>Image:</strong>
-  <%= image_tag @post.image.url %>
+  <%= image_tag @post.image.url if @post.image.present? %>
 </p>
 
-<% if @post.user_id == current_user.id %>
+<% if current_user.present? && @post.user_id == current_user.id %>
   <%= link_to 'Edit', edit_post_path(@post), data: { confirm: 'Are you sure edit?'} %>
   <%= link_to 'Destroy', post_path(@post), method: :delete, data: { confirm: 'Are you sure delete?' } %>
 <% end %>

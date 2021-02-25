@@ -14,7 +14,7 @@ class PostsController < ApplicationController
       render :new
     else
       if @post.save
-        redirect_to new_post_path, notice: "投稿を作成しました"
+        redirect_to user_path(current_user.id), notice: "投稿を作成しました"
       else
         render :new
       end

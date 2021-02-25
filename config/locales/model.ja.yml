@@ -3,6 +3,7 @@ ja:
     models:
       post: 投稿
       user: ユーザー
+      session: セッション
     attributes:
       post:
         content: 内容
